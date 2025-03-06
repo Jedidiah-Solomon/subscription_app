@@ -7,7 +7,7 @@ import { JWT_SECRET } from "../config/env.js";
 import { addDataToCache, getDataFromCache } from "../utils/redis.js";
 
 const USER_CACHE_EXPIRATION = 3600;
-const JWT_EXPIRES_IN = 86400;
+const JWT_EXPIRES_IN_TIME = 86400;
 
 export const signUp = async (req, res, next) => {
   const session = await mongoose.startSession();
@@ -46,7 +46,7 @@ export const signUp = async (req, res, next) => {
     const user = await newUser.save({ session });
 
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
-      expiresIn: JWT_EXPIRES_IN,
+      expiresIn: JWT_EXPIRES_IN_TIME,
     });
 
     await addDataToCache(
@@ -54,7 +54,7 @@ export const signUp = async (req, res, next) => {
       JSON.stringify(user),
       USER_CACHE_EXPIRATION
     );
-    await addDataToCache(`token:${user._id}`, token, JWT_EXPIRES_IN);
+    await addDataToCache(`token:${user._id}`, token, JWT_EXPIRES_IN_TIME);
 
     await session.commitTransaction();
     session.endSession();
@@ -109,10 +109,10 @@ export const signIn = async (req, res, next) => {
     }
 
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
-      expiresIn: JWT_EXPIRES_IN,
+      expiresIn: JWT_EXPIRES_IN_TIME,
     });
 
-    await addDataToCache(`token:${user._id}`, token, JWT_EXPIRES_IN);
+    await addDataToCache(`token:${user._id}`, token, JWT_EXPIRES_IN_TIME);
 
     res.status(200).json({
       success: true,
