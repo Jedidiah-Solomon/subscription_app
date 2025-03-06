@@ -29,7 +29,10 @@ app.use("/api/v1/workflows", workflowRouter);
 app.use(errorMiddleware);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Subscription Tracker API!");
+  res.json({
+    status: true,
+    message: "Welcome to the Subscription Tracker API!",
+  });
 });
 
 app.listen(PORT, async () => {
