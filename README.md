@@ -4,7 +4,7 @@
 
 `npx eslint --init` for eslint
 
-### ARCJET
+### ARCJET -- https://app.arcjet.com/teams
 
 Integrates with Bot protection, rate limiting, email validation & more in just a few lines of code. Customizable protection for forms, login pages, API routes.
 
