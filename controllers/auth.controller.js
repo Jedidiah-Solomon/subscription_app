@@ -3,10 +3,11 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 import User from "../models/user.model.js";
-import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/env.js";
+import { JWT_SECRET } from "../config/env.js";
 import { addDataToCache, getDataFromCache } from "../utils/redis.js";
 
 const USER_CACHE_EXPIRATION = 3600;
+const JWT_EXPIRES_IN = 86400;
 
 export const signUp = async (req, res, next) => {
   const session = await mongoose.startSession();
