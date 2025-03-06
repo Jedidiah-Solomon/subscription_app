@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import { signUp, signIn, signOut } from "../controllers/auth.controller.js";
-import arcjetEmailMiddleware from "../middlewares/arcjetEmailMiddleware.js";
+import arcjetEmailMiddleware from "../middlewares/arcjet-email.middleware.js";
 
 const authRouter = Router();
 
