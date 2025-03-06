@@ -1,9 +1,4 @@
-import arcjet, {
-  shield,
-  detectBot,
-  tokenBucket,
-  // validateEmail,
-} from "@arcjet/node";
+import arcjet, { shield, detectBot, tokenBucket } from "@arcjet/node";
 import { ARCJET_KEY } from "./env.js";
 
 const aj = arcjet({
@@ -13,7 +8,7 @@ const aj = arcjet({
     shield({ mode: "LIVE" }),
     detectBot({
       mode: "LIVE",
-      allow: ["CATEGORY:SEARCH_ENGINE", "CATEGORY:SOCIA"], //CATEGORY:SOCIAL:CATEGORY:PREVIEW:CATEGORY:MONITOR:CATEGORY:ACADEMIC:
+      allow: ["CATEGORY:SEARCH_ENGINE", "CATEGORY:SOCIAL"], //CATEGORY:SOCIAL:CATEGORY:PREVIEW:CATEGORY:MONITOR:CATEGORY:ACADEMIC:
     }),
     tokenBucket({
       mode: "LIVE",
@@ -21,10 +16,6 @@ const aj = arcjet({
       interval: 10, // Refill every 10 seconds
       capacity: 10, // Bucket capacity of 10 tokens
     }),
-    // validateEmail({
-    //   mode: "LIVE",
-    //   deny: ["DISPOSABLE", "INVALID", "NO_MX_RECORDS"],
-    // }),
   ],
 });
 
